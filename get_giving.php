@@ -10,10 +10,10 @@ if (!isset($_GET['email'])) {
 }
 
 $email = mysqli_real_escape_string($con, $_GET['email']);
-$sql = "SELECT * FROM giving_records WHERE user_email = '$email' ORDER BY id DESC";
+$sql = "SELECT * FROM giving_records WHERE user_email = '$email' ORDER BY date_created DESC";
 $result = mysqli_query($con, $sql);
 
-$records = array();
+$records = [];
 if ($result) {
     while($row = mysqli_fetch_assoc($result)) {
         $records[] = $row;
