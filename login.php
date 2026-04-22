@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 require_once 'connect.php';
 
 // Check if data is provided in the URL (GET) 
-if (isset($_GET['phone']) && isset($_GET['password'])) {
+if (isset($_GET['username']) && isset($_GET['password'])) {
 
-    $phone = $_GET['phone'];
+    $username = mysqli_real_escape_string($con, $_GET['username']);
     $password = md5($_GET['password']);
 
-    $sql = "SELECT * FROM users WHERE phone = '$phone' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE fname = '$username' AND password = '$password'";
     $query = mysqli_query($con, $sql);
 
     if (mysqli_num_rows($query) > 0) {
